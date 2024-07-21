@@ -1,0 +1,64 @@
+definitions:
+  model.User:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: Gin Swagger Example API
+paths:
+  /users:
+    get:
+      description: Returns the all Users.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Get All Users
+      tags:
+      - users
+    post:
+      description: Create Users.
+      parameters:
+      - description: userModel.User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Create User
+      tags:
+      - users
+  /users/{name}:
+    get:
+      description: GetUserByName.
+      parameters:
+      - description: search user by name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: GetUserByName
+      tags:
+      - users
+swagger: "2.0"
